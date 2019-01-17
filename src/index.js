@@ -2,17 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
-import movies from './reducers/movies';
+import reducers from './reducers';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from "redux-devtools-extension";
 
 const defaultState = {
-  movies: []
+  movies: [],
+  quizz: {
+    answers: [],
+    score: 0,
+    gameState: 'INIT'
+  }
 };
 
-const store = createStore(movies, defaultState, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(reducers, defaultState, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,63 +1,77 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { answerQuestion, startQuizz } from '../actions/quizz';
 import Quizz from './Quizz';
+
 class Game extends Component {
   state = {
-    gameState: 'INIT',
-    timer: 0,
-    score: 0,
-    index: 0
+    questionIndex: 0
   };
 
-  initGame() {
-    this.setState({ gameState: 'PLAY', score: 0, timer: 0, index: 0 });
-  }
-
-  handleClick() {
-    this.initGame();
-  }
-
   handleAnswer = answer => {
-    if (this.props.questions[this.state.index].answer !== answer) {
-      this.setState({ gameState: 'GAME_OVER' });
-    } else {
-      this.setState(state => ({
-        score: ++state.score,
-        index: ++state.index
-      }));
-    }
+    this.props.answerQuestion(
+      this.props.questions[this.props.quizz.score],
+      answer
+    );
+    this.setState(state => ({ questionIndex: state.questionIndex + 1 }));
   };
 
   nextQuestion = () => {
-    return this.state.index > this.props.questions.size ? this.props.questions[this.state.index] : {};
+    if (this.state.questionIndex < this.props.questions.length) {
+      return this.props.questions[this.state.questionIndex];
+    } else {
+      return null;
+    }
   };
 
+  restartQuizz  = () => {
+    this.setState({questionIndex : 0});
+    this.props.startQuizz();
+  }
+
   render() {
-    const { gameState, score } = this.state;
+    const {
+      quizz: { gameState, score }
+    } = this.props;
     if (gameState === 'INIT') {
-      return <button onClick={() => this.handleClick('PLAY')}>PLAY</button>;
+      return <button onClick={() => this.restartQuizz()}>PLAY</button>;
     } else if (gameState === 'GAME_OVER') {
       return (
         <div>
           <h1>Your score: {score}</h1>
           <h1>GAME OVER</h1>
-          <button onClick={() => this.handleClick('GAME_OVER')}>
-            PLAY AGAIN
-          </button>
+          <button onClick={() => this.restartQuizz()}>PLAY AGAIN</button>
         </div>
       );
     }
-    console.log('Questions length', this.props.questions.length);
-    console.log('index', this.state.index);
-    if (this.props.questions.size === this.state.index) {
-      return <h1>YOU WON </h1>;
+    const nextQuestion = this.nextQuestion();
+    if (!nextQuestion) {
+      return (
+        <div>
+          <h1>YOU WON </h1>
+          <h1>Your score: {score}</h1>
+          <button onClick={() => this.restartQuizz()}>PLAY AGAIN</button>
+        </div>
+      );
     } else
       return (
         <div>
           <h1>Your score: {score}</h1>
-          <Quizz onClick={this.handleAnswer} question={this.nextQuestion()} />
+          <Quizz onClick={this.handleAnswer} question={nextQuestion} />
         </div>
       );
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({
+  quizz: state.quizz
+});
+
+const mapDispatchToProps = {
+  answerQuestion,
+  startQuizz
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game);

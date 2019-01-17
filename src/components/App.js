@@ -1,36 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import {retrieveMovies} from "../actions/movies"
+import {retrieveMovies} from "../actions/movies";
 import Game from './Game';
+import {getQuestions} from '../selectors/moviesSelectors';
 
 class App extends Component {
   componentDidMount() {
     this.props.retrieveMovies();
   }
   render() {
-    const questions = [
-      {
-        movie: 'Rocky 1',
-        actor: 'Sylvester Stalone',
-        answer: 'YES'
-      },
-      {
-        movie: 'Pulp Fiction',
-        actor: 'Meryl Streep',
-        answer: 'NO'
-      }
-    ];
-
-    return <Game questions={questions}/>;
+    return <Game questions={this.props.questions}/>;
   }
 }
 
 const mapStateToProps = (state) => ({
-  movies: state.movies
+  movies: state.movies,
+  questions: getQuestions(state)
 });
 
 const mapDispatchToProps = {
-  retrieveMovies: retrieveMovies
+  retrieveMovies
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
