@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/movie-quizz/static/js/runtime~main.64a767f3.js"
   },
   {
-    "revision": "524538287fa86c4c5259667af71b717b",
+    "revision": "7ce42b555f27bf638798c759a9884fa4",
     "url": "/movie-quizz/index.html"
   }
 ];
