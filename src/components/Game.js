@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { answerQuestion, startQuizz } from '../actions/quizz';
 import Quizz from './Quizz';
+import Header from './Header';
 
 class Game extends Component {
   state = {
@@ -24,39 +25,49 @@ class Game extends Component {
     }
   };
 
-  restartQuizz  = () => {
-    this.setState({questionIndex : 0});
+  restartQuizz = () => {
+    this.setState({ questionIndex: 0 });
     this.props.startQuizz();
-  }
+  };
 
   render() {
     const {
       quizz: { gameState, score }
     } = this.props;
     if (gameState === 'INIT') {
-      return <button onClick={() => this.restartQuizz()}>PLAY</button>;
+      return (
+        <Header
+          onClick={() => this.restartQuizz()}
+          buttonLabel={'PLAY'}
+        >WELCOME TO THE MOVIE QUIZZ
+        </Header>
+      );
     } else if (gameState === 'GAME_OVER') {
       return (
-        <div>
-          <h1>Your score: {score}</h1>
-          <h1>GAME OVER</h1>
-          <button onClick={() => this.restartQuizz()}>PLAY AGAIN</button>
-        </div>
+        <Header
+          onClick={() => this.restartQuizz()}
+          score={score}
+          buttonLabel={'PLAY AGAIN'}
+        >
+          GAME OVER
+        </Header>
       );
     }
     const nextQuestion = this.nextQuestion();
     if (!nextQuestion) {
       return (
-        <div>
-          <h1>YOU WON </h1>
-          <h1>Your score: {score}</h1>
-          <button onClick={() => this.restartQuizz()}>PLAY AGAIN</button>
-        </div>
+        <Header
+          onClick={() => this.restartQuizz()}
+          score={score}
+          buttonLabel={'PLAY AGAIN'}
+        >
+          YOU WON
+        </Header>
       );
     } else
       return (
         <div>
-          <h1>Your score: {score}</h1>
+          <Header score={score} />
           <Quizz onClick={this.handleAnswer} question={nextQuestion} />
         </div>
       );
