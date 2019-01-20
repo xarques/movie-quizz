@@ -27,8 +27,8 @@ const normalizeMovies = moviesFromMovieDB => {
     return movies.map((movie, index) => ({
       id: movie.id,
       title: movie.title,
-      //  Return only the first actor in order to limit the number of combinations for questions
-      actors: [actors[index][0]],
+      //  Return only the 2 first actors in order to limit the number of combinations for questions
+      actors: actors[index].slice(0,2),
       poster: `${IMAGE_W500_ROOT_URL}${movie.poster_path}`
     }));
   });
