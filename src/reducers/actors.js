@@ -19,7 +19,7 @@ const allIds = (state = [], action) => {
     case RETRIEVE_MOVIES:
       return [];
     case MOVIES_RETRIEVED: {
-      return (payload.entities.actors && Object.keys(payload.entities.actors)) || [];
+      return (payload.entities.actors && Object.keys(payload.entities.actors).map(key => parseInt(key))) || [];
     }
     default:
       return state;
