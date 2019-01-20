@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  retrieveQuestions,
-  answerQuestion,
-  startQuizz
-} from '../actions/quizz';
+import { retrieveQuestions, answerQuestion } from '../actions/quizz';
 import Question from './Question';
 import Header from './Header';
 
@@ -32,7 +28,6 @@ class Game extends Component {
   restartQuizz = () => {
     this.setState({ questionIndex: 0 });
     this.props.retrieveQuestions();
-    this.props.startQuizz();
   };
 
   render() {
@@ -83,9 +78,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   retrieveQuestions,
-  answerQuestion,
-  startQuizz
+  answerQuestion
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

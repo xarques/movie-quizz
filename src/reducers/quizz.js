@@ -1,6 +1,5 @@
 import {
   ANSWER_QUESTION,
-  START_QUIZZ,
   RETRIEVE_QUESTIONS,
   QUESTIONS_RETRIEVED
 } from '../actions/quizz';
@@ -11,12 +10,15 @@ export const quizz = (state = {}, action) => {
     case QUESTIONS_RETRIEVED:
       return {
         ...state,
+        gameState: 'PLAYING',
         questions: payload
       };
     case RETRIEVE_QUESTIONS: {
       return {
-        ...state,
-        questions: []
+        questions: [],
+        gameState: 'INIT',
+        answers: [],
+        score: 0
       };
     }
     case ANSWER_QUESTION:
@@ -31,13 +33,6 @@ export const quizz = (state = {}, action) => {
           payload.question.answer !== payload.answer
             ? 'GAME_OVER'
             : state.gameState
-      };
-    case START_QUIZZ:
-      return {
-        ...state,
-        gameState: 'PLAYING',
-        answers: [],
-        score: 0
       };
     default:
       return state;
