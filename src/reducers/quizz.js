@@ -11,14 +11,18 @@ export const quizz = (state = {}, action) => {
       return {
         ...state,
         gameState: 'PLAYING',
-        questions: payload
+        questions: payload,
+        start: new Date(),
+        end: undefined
       };
     case RETRIEVE_QUESTIONS: {
       return {
         questions: [],
         gameState: 'INIT',
         answers: [],
-        score: 0
+        score: 0,
+        start: undefined,
+        end: undefined
       };
     }
     case ANSWER_QUESTION:
@@ -32,7 +36,8 @@ export const quizz = (state = {}, action) => {
         gameState:
           payload.question.answer !== payload.answer
             ? 'GAME_OVER'
-            : state.gameState
+            : state.gameState,
+        end: payload.question.answer !== payload.answer ? new Date() : state.end
       };
     default:
       return state;

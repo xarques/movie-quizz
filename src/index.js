@@ -22,7 +22,9 @@ const defaultState = {
     questions: [],
     answers: [],
     score: 0,
-    gameState: 'INIT'
+    gameState: 'INIT',
+    start: 0,
+    end: 0
   }
 };
 
