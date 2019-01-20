@@ -5,9 +5,7 @@ export const MOVIES_RETRIEVED = 'MOVIES_RETRIEVED';
 
 export const retrieveMovies = () => dispatch => {
   dispatch({ type: RETRIEVE_MOVIES });
-  return getMovies().then(movies => {
-    return dispatch(moviesRetrieved(normalize(movies)));
-  });
+  return getMovies().then(movies => dispatch(moviesRetrieved(normalize(movies))));
 };
 
 const moviesRetrieved = movies => ({
