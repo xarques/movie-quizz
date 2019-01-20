@@ -1,13 +1,15 @@
 {
-  "main.js": "/movie-quizz/static/js/main.472a14e4.chunk.js",
-  "main.js.map": "/movie-quizz/static/js/main.472a14e4.chunk.js.map",
+  "main.css": "/movie-quizz/static/css/main.5da45610.chunk.css",
+  "main.js": "/movie-quizz/static/js/main.2575b1f3.chunk.js",
+  "main.js.map": "/movie-quizz/static/js/main.2575b1f3.chunk.js.map",
   "static/css/1.3e68fc91.chunk.css": "/movie-quizz/static/css/1.3e68fc91.chunk.css",
-  "static/js/1.9ea72ed1.chunk.js": "/movie-quizz/static/js/1.9ea72ed1.chunk.js",
-  "static/js/1.9ea72ed1.chunk.js.map": "/movie-quizz/static/js/1.9ea72ed1.chunk.js.map",
+  "static/js/1.827c67cf.chunk.js": "/movie-quizz/static/js/1.827c67cf.chunk.js",
+  "static/js/1.827c67cf.chunk.js.map": "/movie-quizz/static/js/1.827c67cf.chunk.js.map",
   "runtime~main.js": "/movie-quizz/static/js/runtime~main.64a767f3.js",
   "runtime~main.js.map": "/movie-quizz/static/js/runtime~main.64a767f3.js.map",
   "static/css/1.3e68fc91.chunk.css.map": "/movie-quizz/static/css/1.3e68fc91.chunk.css.map",
+  "static/css/main.5da45610.chunk.css.map": "/movie-quizz/static/css/main.5da45610.chunk.css.map",
   "index.html": "/movie-quizz/index.html",
-  "precache-manifest.23a851c72d198bd1c7d127c6ff4126b2.js": "/movie-quizz/precache-manifest.23a851c72d198bd1c7d127c6ff4126b2.js",
+  "precache-manifest.06305216d86163ec54110ea297db266f.js": "/movie-quizz/precache-manifest.06305216d86163ec54110ea297db266f.js",
   "service-worker.js": "/movie-quizz/service-worker.js"
 }
