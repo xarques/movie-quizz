@@ -43,5 +43,5 @@ $ yarn build
 ## App Functionality
 
 This application allows to test your film knowledge.
-The movies presented are coming for the [the Movie DB](www.themoviedb.org)
+The movies presented are coming for the [the Movie DB](https://www.themoviedb.org)
 It is not possible to save your score
