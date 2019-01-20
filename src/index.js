@@ -10,11 +10,21 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const defaultState = {
-  movies: [],
+  movies: {
+    byId: {},
+    allIds: []
+  },
+  actors: {
+    byId: {},
+    allIds: []
+  },
   quizz: {
+    questions: [],
     answers: [],
     score: 0,
-    gameState: 'INIT'
+    gameState: 'INIT',
+    start: 0,
+    end: 0
   }
 };
 

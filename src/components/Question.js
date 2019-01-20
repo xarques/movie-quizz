@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Quizz = ({ question: { movie, poster, actor }, onClick }) => {
+const Question = ({ question: { movie, poster, actor }, onClick }) => {
   return (
     <div className="text-center">
       <div className="text-center">
@@ -10,7 +10,7 @@ const Quizz = ({ question: { movie, poster, actor }, onClick }) => {
       <div className="text-center">
         <h2>Actor {actor}</h2>
       </div>
-      <div class="text-center">
+      <div className="text-center">
         <button className="btn btn-success m-3" onClick={() => onClick('YES')}>
           YES
         </button>
@@ -22,4 +22,4 @@ const Quizz = ({ question: { movie, poster, actor }, onClick }) => {
   );
 };
 
-export default Quizz;
+export default Question;

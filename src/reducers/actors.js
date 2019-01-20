@@ -7,7 +7,7 @@ const byId = (state = {}, action) => {
     case RETRIEVE_MOVIES:
       return {};
     case MOVIES_RETRIEVED:
-      return payload.entities.movies || {};
+      return payload.entities.actors || {};
     default:
       return state;
   }
@@ -19,17 +19,14 @@ const allIds = (state = [], action) => {
     case RETRIEVE_MOVIES:
       return [];
     case MOVIES_RETRIEVED: {
-      return payload.result || [];
+      return (payload.entities.actors && Object.keys(payload.entities.actors).map(key => parseInt(key))) || [];
     }
     default:
       return state;
   }
 };
 
-const loading = (state = false, action) => action.type === RETRIEVE_MOVIES;
-
 export default combineReducers({
   byId,
-  allIds,
-  loading
+  allIds
 });

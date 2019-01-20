@@ -43,5 +43,5 @@ $ yarn build
 ## App Functionality
 
 This application allows to test your film knowledge.
-For the moment, the movies presented are static (see src/data/movies-imdb.js)
-And all the answers are the same: YES
+The movies presented are coming for the [the Movie DB](https://www.themoviedb.org)
+It is not possible to save your score
