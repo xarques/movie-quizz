@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { retrieveMovies } from '../actions/movies';
 import Game from './Game';
-import { getQuestions } from '../selectors/moviesSelectors';
 
 class App extends Component {
   componentDidMount() {
@@ -11,16 +10,17 @@ class App extends Component {
   render() {
     return (
       <div className="text-center mt-5">
-        <Game questions={this.props.questions} />
+        <Game />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  movies: state.movies,
-  questions: getQuestions(state)
-});
+const mapStateToProps = state => {
+  return {
+    movies: state.movies,
+  };
+};
 
 const mapDispatchToProps = {
   retrieveMovies

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { answerQuestion, startQuizz } from '../actions/quizz';
-import Quizz from './Quizz';
+import {
+  retrieveQuestions,
+  answerQuestion,
+  startQuizz
+} from '../actions/quizz';
+import Question from './Question';
 import Header from './Header';
 
 class Game extends Component {
@@ -11,15 +15,15 @@ class Game extends Component {
 
   handleAnswer = answer => {
     this.props.answerQuestion(
-      this.props.questions[this.props.quizz.score],
+      this.props.quizz.questions[this.props.quizz.score],
       answer
     );
     this.setState(state => ({ questionIndex: state.questionIndex + 1 }));
   };
 
   nextQuestion = () => {
-    if (this.state.questionIndex < this.props.questions.length) {
-      return this.props.questions[this.state.questionIndex];
+    if (this.state.questionIndex < this.props.quizz.questions.length) {
+      return this.props.quizz.questions[this.state.questionIndex];
     } else {
       return null;
     }
@@ -27,6 +31,7 @@ class Game extends Component {
 
   restartQuizz = () => {
     this.setState({ questionIndex: 0 });
+    this.props.retrieveQuestions();
     this.props.startQuizz();
   };
 
@@ -36,10 +41,8 @@ class Game extends Component {
     } = this.props;
     if (gameState === 'INIT') {
       return (
-        <Header
-          onClick={() => this.restartQuizz()}
-          buttonLabel={'PLAY'}
-        >WELCOME TO THE MOVIE QUIZZ
+        <Header onClick={() => this.restartQuizz()} buttonLabel={'PLAY'}>
+          WELCOME TO THE MOVIE QUIZZ
         </Header>
       );
     } else if (gameState === 'GAME_OVER') {
@@ -68,7 +71,7 @@ class Game extends Component {
       return (
         <div>
           <Header score={score} />
-          <Quizz onClick={this.handleAnswer} question={nextQuestion} />
+          <Question onClick={this.handleAnswer} question={nextQuestion} />
         </div>
       );
   }
@@ -79,6 +82,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  retrieveQuestions,
   answerQuestion,
   startQuizz
 };
