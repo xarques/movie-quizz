@@ -16,9 +16,12 @@ const shuffleArray = array =>
 const getRandomInt = max => Math.floor(Math.random() * max);
 
 const getRandomActorIndexNotInMovie = (allActorIds, movieActorIds) => {
-  const actorIdsNotInMovie = allActorIds.filter(
+  let actorIdsNotInMovie = allActorIds.filter(
     actorId => !movieActorIds.includes(actorId)
   );
+  if (actorIdsNotInMovie.length === 0) {
+    actorIdsNotInMovie = allActorIds;
+  }
   const index = getRandomInt(actorIdsNotInMovie.length);
   const movieActorId = actorIdsNotInMovie[index];
   return allActorIds.findIndex(actorId => movieActorId === actorId);

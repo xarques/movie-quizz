@@ -20,7 +20,8 @@ const assertQuizzQuestionsEqualStoreChange = store => expected => done => {
 
 const assertQuizzQuestionsEqualOrStoreChange = store => (expected1, expected2) => done => {
   onStoreChange(store)(() => {
-    const received = JSON.stringify(store.getState().quizz.questions);
+    const received = JSON.stringify(store.getState().quizz.questions.sort((a,b)  => a.movie < b.movie ? -1: 1));
+    console.log('questions', received)
     expect(
       received === expected1 || received === expected2
     ).toBeTruthy();
